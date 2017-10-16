@@ -1,0 +1,100 @@
+<html>
+
+<script>
+	  function GetXmlHttpObject()
+	  {
+		var xmlHttp=null;
+		try
+		{
+		  // Firefox, Opera 8.0+, Safari
+		  xmlHttp=new XMLHttpRequest();
+		}
+		catch (e)
+		{
+		  // Internet Explorer
+		try
+			{
+				xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+			}
+		catch (e)
+		{
+				xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	  }
+	return xmlHttp;
+}
+	  function searchPhone() {
+  		var xhttp = GetXmlHttpObject();
+  		xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+			
+				   var response = JSON.parse(this.responseText);
+				   console.log(response)
+				   var list=document.getElementById("browsers");
+				   list.innerHTML="";
+				   response.forEach(function(item){
+					var option = document.createElement("option");
+					option.value = item.name;
+					list.appendChild(option);
+				   });
+				   
+				   
+    			}
+  	  	};
+  	  	xhttp.open("POST", "service/searchPhone", true);
+  	  	xhttp.send("name="+document.getElementById("name").value);
+		return false;
+	   }
+
+
+	   function submitSearch(){
+	   		var xhttp = GetXmlHttpObject();
+	  		xhttp.onreadystatechange = function() {
+	    			if (this.readyState == 4 && this.status == 200) {
+				
+					   var response = JSON.parse(this.responseText);
+					   var phoneNumber = response[0].phone;
+
+					   document.getElementById("phoneNumber").value = phoneNumber;
+	    			}
+	  	  	};
+	  	  	xhttp.open("POST", "service/getPhoneNumber", true);
+	  	  	xhttp.send("name="+document.getElementById("name").value);
+			return false;
+	   }
+</script>
+
+
+<head>
+	<style>
+		body {
+			color: white;
+			font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
+		}
+	</style>
+</head>
+<body bgcolor="#00ace7">
+<center>
+	</br>
+	<a href="Home.html">
+		<img src="https://mycontacts-app.com/uploads/logos/140405_My%20Contacts%20icon%20and%20name.png">
+	</a>
+	</br></br></br></br></br>
+<form>
+Search:
+
+  <input list="browsers" id="name" onkeyup="searchPhone();">
+  <button type="button" onclick="submitSearch();">Search</button>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  Phone Number: <input type="text" disabled id="phoneNumber" />
+
+  <datalist id="browsers">
+  </datalist>
+</form>
+</body>
+</html>

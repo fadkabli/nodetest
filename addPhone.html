@@ -1,0 +1,78 @@
+
+<html>
+<head>
+	<style>
+		body {
+			color: white;
+			font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
+		}
+		input.button-add {
+		background-image: url(http://www.iconarchive.com/download/i93787/custom-icon-design/silky-line-user/user2-add.ico); /* 16px x 16px */
+		background-color: transparent; /* make the button transparent */
+		background-repeat: no-repeat;  /* make the background image appear only once */
+		background-position: 0px 0px;  /* equivalent to 'top left' */
+		border: none;           /* assuming we don't want any borders */
+		cursor: pointer;        /* make the cursor like hovering over an <a> element */
+		height: 16px;           /* make this the size of your image */
+		padding-left: 16px;     /* make text start to the right of the image */
+		vertical-align: middle; /* align the text vertically centered */
+		}
+	</style>
+	<script>
+	  function GetXmlHttpObject()
+	  {
+		var xmlHttp=null;
+		try
+		{
+		  // Firefox, Opera 8.0+, Safari
+		  xmlHttp=new XMLHttpRequest();
+		}
+		catch (e)
+		{
+		  // Internet Explorer
+		try
+			{
+				xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+			}
+		catch (e)
+		{
+				xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	  }
+	return xmlHttp;
+}
+	  function addPhone() {
+  		var xhttp = GetXmlHttpObject();
+  		xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+				alert(this.responseText);
+    			}
+  	  	};
+  	  	xhttp.open("POST", "service/addPhone", true);
+  	  	xhttp.send("name="+document.getElementById("name").value+"&phone="+document.getElementById("phone").value);
+return false;
+	   }
+</script>
+
+	
+</head>
+<body bgcolor="#00ace7">
+<center>
+	</br>
+	<a href="Home.html">
+		<img src="https://mycontacts-app.com/uploads/logos/140405_My%20Contacts%20icon%20and%20name.png">
+	</a>
+	</br></br></br></br></br>
+	
+		Name:<br>
+		<input type="text" name="name" id="name"><br></br>
+		Phone Number:<br>
+		<input type="text" name="phone" id="phone"><br><br>
+		<button value="add" class="button-add" onclick="addPhone();">
+			<img src="https://cdn4.iconfinder.com/data/icons/meBaze-Freebies/512/add-user.png" height="35"/>
+		</button>
+	
+	
+</center>
+</body>
+</html>
