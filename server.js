@@ -9,16 +9,11 @@ qs = require('querystring');
 
 
 //params of DB
-var dbConfig = {
-    server:'mycontactserver.database.windows.net',
-    database:'MyContact',
-    user:"maayan",
-    password:"Mash1234",
-    port:1433,
-     options: {
-            encrypt: true
-        }
-};
+var conn_str = "Driver={ODBC Driver 13 for SQL Server};" +
+               "Server=tcp:mycontactserver.database.windows.net,1433;" +
+               "Database=mycontact;Uid=maayan@mycontactserver;" +
+               "Pwd=Orit1234;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30";
+//};
 
 
 http.createServer(function (request, response) {
