@@ -180,6 +180,6 @@ http.createServer(function (request, response) {
     });
  });
 
-}).listen(1337);
+}).listen(port);
 
 console.log('Server is running..');
