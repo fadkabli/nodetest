@@ -13,7 +13,7 @@ qs = require('querystring');
 var conn_str = "Driver={ODBC Driver 13 for SQL Server};" +
                "Server=tcp:mycontactserver.database.windows.net,1433;" +
                "Database=mycontact;Uid=maayan@mycontactserver;" +
-               "Pwd=Orit1234;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30";
+               "Pwd=Mash1234;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30";
 //};
 
 
