@@ -16,6 +16,9 @@ var conn_str = "Driver={ODBC Driver 13 for SQL Server};" +
                "Pwd=Mash1234;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30";
 //};
 
+var query = "SELECT name, phone, status FROM users";
+console.log("query")
+
 
 http.createServer(function (request, response) {
    
